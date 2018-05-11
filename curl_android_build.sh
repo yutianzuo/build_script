@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#curl source version
+#curl source version 7.60.0
 
 _compile() {
     SURFIX=$1
