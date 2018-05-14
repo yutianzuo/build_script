@@ -1,21 +1,24 @@
 #!/bin/sh
 
-#curl source version 7.60.0
-
 _compile() {
     SURFIX=$1
     TOOL=$2
     ARCH_FLAGS=$3
     ARCH_LINK=$4
     ARCH=$5
-    #if [-d "./${SURFIX}_out" ]; then
-        mkdir "./${SURFIX}_out" 
-    #fi
-    #if [-d "toolchain_${SURFIX}" ]; then
-        $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./toolchain_${SURFIX}
-    #fi
+    
+    mkdir "./curl_${SURFIX}_out" 
+
+    #custom NDK Path, mime is ndkr17
+    export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
+
+    TARGET_SOURCE="curl-7.59.0"
+    
+    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force --platform=android-21
+
+    
     export ANDROID_HOME=`pwd`
-    export TOOLCHAIN=$ANDROID_HOME/toolchain_${SURFIX}
+    export TOOLCHAIN=$ANDROID_HOME/curl_toolchain_${SURFIX}
     export PKG_CONFIG_LIBDIR=$TOOLCHAIN/lib/pkgconfig
     export CROSS_SYSROOT=$TOOLCHAIN/sysroot
     export PATH=$TOOLCHAIN/bin:$PATH
@@ -31,9 +34,15 @@ _compile() {
     export CFLAGS="${ARCH_FLAGS} -fpic -ffunction-sections -funwind-tables -fstack-protector -fno-strict-aliasing -finline-limit=64"
     export CXXFLAGS="${CFLAGS} -frtti -fexceptions"
     export LDFLAGS="${ARCH_LINK}"    
+
+    #copy ssl .h and .a,fix the path
+    cp ${ANDROID_HOME}/openssl_${SURFIX}_out/lib/libssl.a ${CROSS_SYSROOT}/usr/lib
+    cp ${ANDROID_HOME}/openssl_${SURFIX}_out/lib/libcrypto.a ${CROSS_SYSROOT}/usr/lib
+    cp -r ${ANDROID_HOME}/openssl_${SURFIX}_out/include/openssl ${CROSS_SYSROOT}/usr/include
     
+    cd ./build_curl/${TARGET_SOURCE}
     
-    ./configure --prefix=$ANDROID_HOME/${SURFIX}_out \
+    ./configure --prefix=$ANDROID_HOME/curl_${SURFIX}_out \
        --with-sysroot=$TOOLCHAIN/sysroot \
        --host=${TOOL} \
        --enable-ipv6 \
@@ -48,13 +57,14 @@ _compile() {
        --disable-shared \
        --disable-smb \
        --disable-telnet \
-       --disable-verbose
+       --disable-verbose \
+       --with-ssl=$TOOLCHAIN/sysroot/usr \
+       #--with-ca-bundle=$ANDROID_HOME/cacert.pem
+       #--with-nghttp2=$TOOLCHAIN/sysroot/usr/local
 
-       #--with-ssl=$TOOLCHAIN/sysroot/usr/local \
-       #--with-nghttp2=$TOOLCHAIN/sysroot/usr/local \
-    #make clean
-    #make -j4
-    #make install
+    make clean
+    make -j4
+    make install
 }
 
 # arm

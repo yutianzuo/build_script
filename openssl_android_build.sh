@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#use ndk 14rc
 
 _compile() {
     SURFIX=$1
@@ -9,16 +8,22 @@ _compile() {
     ARCH_LINK=$4
     CFGNAME=$5
     ARCH=$6
+
+#custom NDK Path 
+    #need ndk r14!!!!
+    #export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
+
+    echo "NDK PATH:"
+    echo ${ANDROID_NDK}
     
-    #if [-d "./${SURFIX}_out" ]; then
-        mkdir "./${SURFIX}_out" 
-    #fi
-    #if [-d "toolchain_${SURFIX}" ]; then
-        $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./toolchain_${SURFIX}
-    #fi
+    
+    mkdir "./openssl_${SURFIX}_out"     
+    
+    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./openssl_toolchain_${SURFIX} --platform=android-16 --force
+    
 
     export ANDROID_HOME=`pwd`
-    export TOOLCHAIN=$ANDROID_HOME/toolchain_${SURFIX}
+    export TOOLCHAIN=$ANDROID_HOME/openssl_toolchain_${SURFIX}
     export PKG_CONFIG_LIBDIR=$TOOLCHAIN/lib/pkgconfig
     export CROSS_SYSROOT=$TOOLCHAIN/sysroot
     export PATH=$TOOLCHAIN/bin:$PATH
@@ -35,15 +40,21 @@ _compile() {
     export CXXFLAGS="${CFLAGS} -frtti -fexceptions"
     export LDFLAGS="${ARCH_LINK}"    
     
-    echo $PATH
+    cd ./build_openssl/openssl-1.1.0f
 
-    ./Configure ${CFGNAME} --prefix=$ANDROID_HOME/${SURFIX}_out \
-    zlib no-asm no-shared no-unit-test
+    PREFIX_PATH=$ANDROID_HOME/openssl_${SURFIX}_out/
+
+    ./Configure ${CFGNAME} \
+    --prefix=$PREFIX_PATH \
+    zlib \
+    no-asm \
+    no-shared \
+    no-unit-test
 
 
-    #make clean
-    #make -j4
-    #make install
+    make clean
+    make -j4
+    make install
 }
 
 # arm
@@ -61,4 +72,4 @@ _compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softf
 # mips64
 #_compile "mips64" "mips64el-linux-android" "" "" "linux64-mips64" "mips64"
 
-echo "done"
+echo "all done"
