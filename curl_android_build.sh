@@ -31,7 +31,7 @@ _compile() {
     export STRIP=$TOOLCHAIN/bin/${TOOL}-strip
     export ARCH_FLAGS=$ARCH_FLAGS
     export ARCH_LINK=$ARCH_LINK
-    export CFLAGS="${ARCH_FLAGS} -fpic -ffunction-sections -funwind-tables -fstack-protector -fno-strict-aliasing -finline-limit=64"
+    export CFLAGS="${ARCH_FLAGS} -fpic -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -finline-limit=64"
     export CXXFLAGS="${CFLAGS} -frtti -fexceptions"
     export LDFLAGS="${ARCH_LINK}"    
 
