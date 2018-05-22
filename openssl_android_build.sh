@@ -36,9 +36,9 @@ _compile() {
     export STRIP=$TOOLCHAIN/bin/${TOOL}-strip
     export ARCH_FLAGS=$ARCH_FLAGS
     export ARCH_LINK=$ARCH_LINK
-    export CFLAGS="${ARCH_FLAGS} -fpic -ffunction-sections -funwind-tables -fstack-protector -fno-strict-aliasing -finline-limit=64"
+ #   export CFLAGS="${ARCH_FLAGS} -fpic -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -finline-limit=64 -Os"
     export CXXFLAGS="${CFLAGS} -frtti -fexceptions"
-    export LDFLAGS="${ARCH_LINK}"    
+#    export LDFLAGS="${ARCH_LINK}"    
     
     cd ./build_openssl/openssl-1.1.0f
 
@@ -52,9 +52,15 @@ _compile() {
     no-unit-test
 
 
-    make clean
-    make -j4
-    make install
+    echo "CROSS_PATH IS :"
+    echo $CROSS_SYSROOT
+    #注意，这里输出路径是为了后续修改makefile文件的
+    #可能你会注意到CFLAGS和LDFLAGS导出被注释了，因为openssl的编译脚本忽略了这两个变量所以这里指定的根本没有卵用
+    #所以只能将make的动作注释掉，然后去手动修改makefile文件，这时候需要1、指定一下CROSS_SYSROOT变量2、将这里需要额外添加的编译参数添加到makefile中3、将额外的链接参数也添加进去
+    #所以正确的方式是执行这个脚本，然后修改makefile， 然后自己手动执行make  makeinstall等
+#    make clean
+#    make -j4
+#    make install
 }
 
 # arm
