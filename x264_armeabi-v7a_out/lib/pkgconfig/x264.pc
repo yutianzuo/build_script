@@ -1,0 +1,11 @@
+prefix=/Users/yutianzuo/code/github/build_script/x264_armeabi-v7a_out
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: x264
+Description: H.264 (MPEG4 AVC) encoder library
+Version: 0.157.2932 303c484
+Libs: -L${exec_prefix}/lib -lx264 -lm -ldl
+Libs.private: 
+Cflags: -I${prefix}/include

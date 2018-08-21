@@ -1,0 +1,14 @@
+prefix=/Users/yutianzuo/code/github/build_script/ffmpeg_armeabi-v7a_out
+exec_prefix=${prefix}
+libdir=/Users/yutianzuo/code/github/build_script/ffmpeg_armeabi-v7a_out/lib
+includedir=/Users/yutianzuo/code/github/build_script/ffmpeg_armeabi-v7a_out/include
+
+Name: libavfilter
+Description: FFmpeg audio/video filtering library
+Version: 7.26.100
+Requires: libavutil >= 56.19.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavfilter -pthread -lm
+Libs.private: 
+Cflags: -I${includedir}

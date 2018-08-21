@@ -1,0 +1,14 @@
+prefix=/Users/yutianzuo/code/github/build_script/ffmpeg_armeabi-v7a_out
+exec_prefix=${prefix}
+libdir=/Users/yutianzuo/code/github/build_script/ffmpeg_armeabi-v7a_out/lib
+includedir=/Users/yutianzuo/code/github/build_script/ffmpeg_armeabi-v7a_out/include
+
+Name: libavformat
+Description: FFmpeg container format library
+Version: 58.17.103
+Requires: libavcodec >= 58.23.100, libswresample >= 3.2.100, libavutil >= 56.19.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavformat -lm -lz
+Libs.private: 
+Cflags: -I${includedir}

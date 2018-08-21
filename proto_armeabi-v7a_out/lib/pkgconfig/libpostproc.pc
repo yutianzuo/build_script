@@ -1,0 +1,14 @@
+prefix=/Users/yutianzuo/code/github/build_script/proto_armeabi-v7a_out
+exec_prefix=${prefix}
+libdir=/Users/yutianzuo/code/github/build_script/proto_armeabi-v7a_out/lib
+includedir=/Users/yutianzuo/code/github/build_script/proto_armeabi-v7a_out/include
+
+Name: libpostproc
+Description: FFmpeg postprocessing library
+Version: 55.2.100
+Requires: libavutil >= 56.19.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lpostproc -lm
+Libs.private: 
+Cflags: -I${includedir}
