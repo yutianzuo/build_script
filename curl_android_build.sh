@@ -9,12 +9,12 @@ _compile() {
     
     mkdir "./curl_${SURFIX}_out" 
 
-    #custom NDK Path, mime is ndkr17
-    export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
+    #custom NDK Path, mime is ndkr14
+    #export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
 
     TARGET_SOURCE="curl-7.59.0"
     
-    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force --platform=android-21
+    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force
 
     
     export ANDROID_HOME=`pwd`
@@ -58,7 +58,7 @@ _compile() {
        --disable-smb \
        --disable-telnet \
        --disable-verbose \
-       --with-ssl=$TOOLCHAIN/sysroot/usr \
+       --with-ssl=$TOOLCHAIN/sysroot/usr
        #--with-ca-bundle=$ANDROID_HOME/cacert.pem
        #--with-nghttp2=$TOOLCHAIN/sysroot/usr/local
 
@@ -70,7 +70,7 @@ _compile() {
 # arm
 #_compile "armeabi" "arm-linux-androideabi" "-mthumb -D__ANDROID_API__=20" "" "arm"
 # armv7
-_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -D__ANDROID_API__=20" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
+_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
 # arm64v8, maybe should compile with a lower ndk
 #_compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
 # x86
