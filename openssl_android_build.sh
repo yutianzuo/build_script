@@ -19,7 +19,8 @@ _compile() {
     
     mkdir "./openssl_${SURFIX}_out"     
     
-    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./openssl_toolchain_${SURFIX} --platform=android-16 --force
+    #编译arm64的so需要api21以及以上，之前指定的api为16
+    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./openssl_toolchain_${SURFIX} --platform=android-21 --force
     
 
     export ANDROID_HOME=`pwd`
@@ -66,9 +67,9 @@ _compile() {
 # arm
 #_compile "armeabi" "arm-linux-androideabi" "-mthumb" "" "android" "arm"
 # armv7
-_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "android-armeabi" "arm"
+#_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "android-armeabi" "arm"
 # arm64v8
-#_compile "arm64-v8a" "aarch64-linux-android" "" "" "android64-aarch64" "arm64"
+_compile "arm64-v8a" "aarch64-linux-android" "" "" "android64-aarch64" "arm64"
 # x86
 #_compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "android-x86" "x86"
 # x86_64

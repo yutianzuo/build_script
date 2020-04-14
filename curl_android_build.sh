@@ -70,9 +70,9 @@ _compile() {
 # arm
 #_compile "armeabi" "arm-linux-androideabi" "-mthumb -D__ANDROID_API__=20" "" "arm"
 # armv7
-_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
+#_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
 # arm64v8, maybe should compile with a lower ndk
-#_compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
+_compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
 # x86
 #_compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "x86"
 # x86_64
