@@ -17,13 +17,13 @@ _compile() {
 
     mkdir "./ffmpeg_${SURFIX}_out" 
 
-    #custom NDK Path, mime is ndkr14 already export
+    #custom NDK Path, use latest
     export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
 
     #ffmpeg version 4.2.2
     TARGET_SOURCE="ffmpeg"
     
-    # $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./ffmpeg_toolchain_${SURFIX} --force
+    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./ffmpeg_toolchain_${SURFIX} --force
     #--platform=android-19
 
     
