@@ -17,7 +17,7 @@ old_library='libcurl.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L=/usr/lib -lssl -lcrypto -lz'
+dependency_libs=' -L=/usr/lib -L/Users/yutianzuo/code/github/build_script/nghttp2_armeabi-v7a_out/lib -lnghttp2 -lssl -lcrypto -lz'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''

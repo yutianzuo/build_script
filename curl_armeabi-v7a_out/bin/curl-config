@@ -84,7 +84,7 @@ while test $# -gt 0; do
         ;;
 
     --feature|--features)
-        for feature in SSL IPv6 UnixSockets libz AsynchDNS NTLM NTLM_WB TLS-SRP HTTPS-proxy ""; do
+        for feature in SSL IPv6 UnixSockets libz AsynchDNS NTLM NTLM_WB TLS-SRP HTTP2 HTTPS-proxy ""; do
             test -n "$feature" && echo "$feature"
         done
         ;;
@@ -149,7 +149,7 @@ while test $# -gt 0; do
            CURLLIBDIR=""
         fi
         if test "Xyes" = "Xyes"; then
-          echo ${CURLLIBDIR}-lcurl -lssl -lcrypto -lz
+          echo ${CURLLIBDIR}-lcurl -lnghttp2 -lssl -lcrypto -lz
         else
           echo ${CURLLIBDIR}-lcurl
         fi
@@ -160,7 +160,7 @@ while test $# -gt 0; do
 
     --static-libs)
         if test "Xyes" != "Xno" ; then
-          echo ${exec_prefix}/lib/libcurl.a -march=armv7-a -Wl,--fix-cortex-a8 -L/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/sysroot/usr/lib -lssl -lcrypto -lz
+          echo ${exec_prefix}/lib/libcurl.a -march=armv7-a -Wl,--fix-cortex-a8 -L/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/sysroot/usr/lib -L/Users/yutianzuo/code/github/build_script/nghttp2_armeabi-v7a_out/lib -lnghttp2 -lssl -lcrypto -lz
         else
           echo "curl was built with static libraries disabled" >&2
           exit 1
@@ -168,7 +168,7 @@ while test $# -gt 0; do
         ;;
 
     --configure)
-        echo " '--prefix=/Users/yutianzuo/code/github/build_script/curl_armeabi-v7a_out' '--with-sysroot=/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/sysroot' '--host=arm-linux-androideabi' '--enable-ipv6' '--enable-static' '--enable-threaded-resolver' '--disable-dict' '--disable-gopher' '--disable-ldap' '--disable-ldaps' '--disable-manual' '--disable-pop3' '--disable-smtp' '--disable-imap' '--disable-rtsp' '--disable-shared' '--disable-smb' '--disable-telnet' '--disable-verbose' '--with-ssl=/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/sysroot/usr' 'host_alias=arm-linux-androideabi' 'CC=/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/bin/arm-linux-androideabi-gcc' 'CFLAGS=-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -D__ANDROID_API__=20 -fpic -ffunction-sections -funwind-tables -fstack-protector -fno-strict-aliasing -finline-limit=64' 'LDFLAGS=-march=armv7-a -Wl,--fix-cortex-a8'"
+        echo " '--prefix=/Users/yutianzuo/code/github/build_script/curl_armeabi-v7a_out' '--with-sysroot=/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/sysroot' '--host=arm-linux-androideabi' '--enable-ipv6' '--enable-static' '--enable-threaded-resolver' '--disable-dict' '--disable-gopher' '--disable-ldap' '--disable-ldaps' '--disable-manual' '--disable-pop3' '--disable-smtp' '--disable-imap' '--disable-rtsp' '--disable-shared' '--disable-smb' '--disable-telnet' '--disable-verbose' '--with-ssl=/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/sysroot/usr' '--with-nghttp2=/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/sysroot/usr' 'host_alias=arm-linux-androideabi' 'CC=/Users/yutianzuo/code/github/build_script/curl_toolchain_armeabi-v7a/bin/arm-linux-androideabi-gcc' 'CFLAGS=-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fpic -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -finline-limit=64' 'LDFLAGS=-march=armv7-a -Wl,--fix-cortex-a8'"
         ;;
 
     *)
