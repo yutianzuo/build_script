@@ -9,7 +9,7 @@ _compile() {
     
     mkdir "./curl_${SURFIX}_out" 
 
-    #custom NDK Path, mime is ndkr14
+    #custom NDK Path, use android studio default(latest)
     #export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
 
     TARGET_SOURCE="curl-7.59.0"
@@ -63,7 +63,7 @@ _compile() {
        #--with-nghttp2=$TOOLCHAIN/sysroot/usr/local
 
     make clean
-    make -j4
+    make -j16
     make install
 }
 

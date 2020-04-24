@@ -10,7 +10,7 @@ _compile() {
     ARCH=$6
 
 #custom NDK Path 
-    #need ndk r14!!!!
+    #need ndk r14!!!!, my ndk r14 has been already exported...
     #export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
 
     echo "NDK PATH:"
@@ -19,8 +19,8 @@ _compile() {
     
     mkdir "./openssl_${SURFIX}_out"     
     
-    #编译arm64的so需要api21以及以上，之前指定的api为16
-    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./openssl_toolchain_${SURFIX} --platform=android-21 --force
+    #api >= 21
+    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./openssl_toolchain_${SURFIX} --force
     
 
     export ANDROID_HOME=`pwd`
@@ -28,40 +28,23 @@ _compile() {
     export PKG_CONFIG_LIBDIR=$TOOLCHAIN/lib/pkgconfig
     export CROSS_SYSROOT=$TOOLCHAIN/sysroot
     export PATH=$TOOLCHAIN/bin:$PATH
-    export CC=$TOOLCHAIN/bin/${TOOL}-gcc
-    export CXX=$TOOLCHAIN/bin/${TOOL}-g++
-    export LINK=${CXX}
-    export LD=$TOOLCHAIN/bin/${TOOL}-ld
-    export AR=$TOOLCHAIN/bin/${TOOL}-ar
-    export RANLIB=$TOOLCHAIN/bin/${TOOL}-ranlib
-    export STRIP=$TOOLCHAIN/bin/${TOOL}-strip
-    export ARCH_FLAGS=$ARCH_FLAGS
-    export ARCH_LINK=$ARCH_LINK
- #   export CFLAGS="${ARCH_FLAGS} -fpic -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -finline-limit=64 -Os"
-    export CXXFLAGS="${CFLAGS} -frtti -fexceptions"
-#    export LDFLAGS="${ARCH_LINK}"    
-    
+    export CROSS_COMPILE=${TOOLCHAIN}/bin/${TOOL}-
+
+    echo "CROSS_COMPILE IS :"
+    echo $CROSS_COMPILE
+    echo "CROSS_SYSROOT IS :"
+    echo $CROSS_SYSROOT
+
     cd ./build_openssl/openssl-1.1.0f
 
     PREFIX_PATH=$ANDROID_HOME/openssl_${SURFIX}_out/
 
-    ./Configure ${CFGNAME} \
-    --prefix=$PREFIX_PATH \
-    zlib \
-    no-asm \
-    no-shared \
-    no-unit-test
+    ./Configure --prefix=$PREFIX_PATH \
+    ${CFGNAME}
 
-
-    echo "CROSS_PATH IS :"
-    echo $CROSS_SYSROOT
-    #注意，这里输出路径是为了后续修改makefile文件的
-    #可能你会注意到CFLAGS和LDFLAGS导出被注释了，因为openssl的编译脚本忽略了这两个变量所以这里指定的根本没有卵用
-    #所以只能将make的动作注释掉，然后去手动修改makefile文件，这时候需要1、指定一下CROSS_SYSROOT变量2、将这里需要额外添加的编译参数添加到makefile中3、将额外的链接参数也添加进去
-    #所以正确的方式是执行这个脚本，然后修改makefile， 然后自己手动执行make  makeinstall等
-#    make clean
-#    make -j4
-#    make install
+   make clean
+   make -j16
+   make install_sw
 }
 
 # arm
