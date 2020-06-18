@@ -72,7 +72,10 @@ _compile() {
     --disable-avdevice \
     --disable-postproc \
     --enable-libx264 \
-    
+    --enable-jni \
+    --enable-mediacodec \
+    --enable-decoder=h264_mediacodec \
+    --enable-hwaccel=h264_mediacodec    
 
     make clean
     make -j16
