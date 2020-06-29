@@ -42,7 +42,7 @@ _compile() {
     export STRIP=$TOOLCHAIN/bin/${TOOL}-strip
     export ARCH_FLAGS=$ARCH_FLAGS
     export ARCH_LINK=$ARCH_LINK
-    export CFLAGS="${ARCH_FLAGS} -fpic -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing"
+    export CFLAGS="${ARCH_FLAGS} -O3 -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -fPIC"
     export CXXFLAGS="${CFLAGS} -fexceptions"
     export CPPFLAGS=${CXXFLAGS}
     export LDFLAGS="${ARCH_LINK}"    
@@ -55,11 +55,11 @@ _compile() {
     cd ./build_ffmpeg/${TARGET_SOURCE}
     
     ./configure --disable-doc \
-    --sysroot=$CROSS_SYSROOT \
-    --cross-prefix=$CROSS_PREFIX \
-    --prefix=$ANDROID_HOME/ffmpeg_${SURFIX}_out \
+    --sysroot="$CROSS_SYSROOT" \
+    --cross-prefix="$CROSS_PREFIX" \
+    --prefix="$ANDROID_HOME/ffmpeg_${SURFIX}_out" \
     --enable-cross-compile \
-    --arch=$ARCH_FF \
+    --arch="$ARCH_FF" \
     --target-os=android \
     --disable-debug \
     --disable-ffmpeg \
@@ -75,7 +75,8 @@ _compile() {
     --enable-jni \
     --enable-mediacodec \
     --enable-decoder=h264_mediacodec \
-    --enable-hwaccel=h264_mediacodec    
+    --extra-cflags="$CFLAGS"
+
 
     make clean
     make -j16
