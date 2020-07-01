@@ -42,16 +42,19 @@ _compile() {
     export STRIP=$TOOLCHAIN/bin/${TOOL}-strip
     export ARCH_FLAGS=$ARCH_FLAGS
     export ARCH_LINK=$ARCH_LINK
-    export CFLAGS="${ARCH_FLAGS} -O3 -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -fPIC"
+    export CFLAGS="${ARCH_FLAGS} -fPIC -O3 -ffast-math -fstrict-aliasing -Werror=strict-aliasing -Wno-psabi -Wa,--noexecstack -DANDROID -DNDEBUG" 
     export CXXFLAGS="${CFLAGS} -fexceptions"
     export CPPFLAGS=${CXXFLAGS}
-    export LDFLAGS="${ARCH_LINK}"    
+    export LDFLAGS="${ARCH_LINK}"
 
     #copy x264 .h and .a,fix the path
     cp -r ${ANDROID_HOME}/x264_${SURFIX}_out/lib/ ${CROSS_SYSROOT}/usr/lib
     cp -r ${ANDROID_HOME}/x264_${SURFIX}_out/include/ ${CROSS_SYSROOT}/usr/include
 
-    
+    #copy openssl .h and .a
+    cp -r ${ANDROID_HOME}/openssl_${SURFIX}_out/lib/ ${CROSS_SYSROOT}/usr/lib
+    cp -r ${ANDROID_HOME}/openssl_${SURFIX}_out/include/ ${CROSS_SYSROOT}/usr/include
+        
     cd ./build_ffmpeg/${TARGET_SOURCE}
     
     ./configure --disable-doc \
@@ -75,9 +78,16 @@ _compile() {
     --enable-jni \
     --enable-mediacodec \
     --enable-decoder=h264_mediacodec \
+    --enable-small \
+    --enable-nonfree \
+    --enable-openssl \
+    --extra-ldflags="-lssl -lcrypto $LDFLAGS" \
     --extra-cflags="$CFLAGS"
 
-
+    ################################################################################################################################################
+    #ffmpeg的检验步骤中似乎只支持旧版本的openssl，所以这里用1.0.2版本的openssl，这个版本的openssl不支持64位arm编译，所以ffmpeg也只编译v7a版本
+    ################################################################################################################################################
+    
     make clean
     make -j16
     make install
@@ -86,9 +96,9 @@ _compile() {
 # arm
 #_compile "armeabi" "arm-linux-androideabi" "-mthumb -D__ANDROID_API__=20" "" "arm"
 # armv7
-# _compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
+_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
 # arm64v8, maybe should compile with a lower ndk
-_compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
+#_compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
 # x86
 #_compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "x86"
 # x86_64

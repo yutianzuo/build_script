@@ -35,7 +35,9 @@ _compile() {
     echo "CROSS_SYSROOT IS :"
     echo $CROSS_SYSROOT
 
-    cd ./build_openssl/openssl-1.1.0f
+    #编译1.0.2版本，由于ffmpeg对openssl检测似乎不支持高版本。
+    #编译给其他库用，如curl，建议用最版本， 如1.1.1
+    cd ./build_openssl/openssl-1.0.2
 
     PREFIX_PATH=$ANDROID_HOME/openssl_${SURFIX}_out/
 
@@ -45,14 +47,16 @@ _compile() {
    make clean
    make -j16
    make install_sw
+   #1.0.2版本，可能需要自己手动copy一下.a文件，不找啥原因了。
 }
 
 # arm
 #_compile "armeabi" "arm-linux-androideabi" "-mthumb" "" "android" "arm"
 # armv7
-#_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "android-armeabi" "arm"
+##注意，1.0.2版本编译v7a和后续高版本编译v7a参数不一样，请查询不同版本Configure的说明
+_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "android-armv7" "arm"
 # arm64v8
-_compile "arm64-v8a" "aarch64-linux-android" "" "" "android64-aarch64" "arm64"
+# _compile "arm64-v8a" "aarch64-linux-android" "" "" "android64-aarch64" "arm64"
 # x86
 #_compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "android-x86" "x86"
 # x86_64
