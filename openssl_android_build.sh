@@ -9,9 +9,15 @@ _compile() {
     CFGNAME=$5
     ARCH=$6
 
+    X86_CONFIGURE=""
+    if [ "${ARCH}" == "x86" ];
+    then
+    X86_CONFIGURE="no-asm"
+    fi
+
 #custom NDK Path 
     #need ndk r14!!!!, my ndk r14 has been already exported...
-    #export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
+    export ANDROID_NDK=/Users/tianzuoyu/Downloads/android-ndk-r14b
 
     echo "NDK PATH:"
     echo ${ANDROID_NDK}
@@ -41,7 +47,7 @@ _compile() {
 
     PREFIX_PATH=$ANDROID_HOME/openssl_${SURFIX}_out/
 
-    ./Configure --prefix=$PREFIX_PATH \
+    ./Configure --prefix=$PREFIX_PATH -fPIC ${X86_CONFIGURE} \
     ${CFGNAME}
 
    make clean
@@ -54,13 +60,13 @@ _compile() {
 #_compile "armeabi" "arm-linux-androideabi" "-mthumb" "" "android" "arm"
 # armv7
 ##注意，1.0.2版本编译v7a和后续高版本编译v7a参数不一样，请查询不同版本Configure的说明
-#_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "android-armv7" "arm"
+_compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "android-armv7" "arm"
 # arm64v8
-_compile "arm64-v8a" "aarch64-linux-android" "" "" "android64-aarch64" "arm64"
+# _compile "arm64-v8a" "aarch64-linux-android" "" "" "android64-aarch64" "arm64"
 # x86
-#_compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "android-x86" "x86"
+# _compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "android-x86" "x86"
 # x86_64
-#_compile "x86_64" "x86_64-linux-android" "-march=x86-64 -m64 -msse4.2 -mpopcnt  -mtune=intel" "" "android64" "x86_64"
+# _compile "x86_64" "x86_64-linux-android" "-march=x86-64 -m64 -msse4.2 -mpopcnt  -mtune=intel" "" "android64-x86_64" "x86_64"
 # mips
 #_compile "mips" "mipsel-linux-android" "" "" "android-mips" "mips"
 # mips64
