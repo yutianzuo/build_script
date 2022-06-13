@@ -1,5 +1,5 @@
 #!/bin/sh
-
+python --version
 _compile() {
     SURFIX=$1
     TOOL=$2
@@ -10,12 +10,12 @@ _compile() {
     mkdir "./curl_${SURFIX}_out" 
 
     #custom NDK Path, use android studio default(latest)
-    export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
-
-    TARGET_SOURCE="curl-7.59.0"
+    export ANDROID_NDK=~/Library/Android/sdk/ndk-bundle
+    # export ANDROID_NDK=~/Downloads/android-ndk-r15c
+    TARGET_SOURCE="curl-7.83.1"
     
     $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force
-
+    # $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force --platform=android-28
     
     export ANDROID_HOME=`pwd`
     export TOOLCHAIN=$ANDROID_HOME/curl_toolchain_${SURFIX}
@@ -36,17 +36,20 @@ _compile() {
     export LDFLAGS="${ARCH_LINK}"    
 
     #copy ssl .h and .a,fix the path
-    cp ${ANDROID_HOME}/openssl_${SURFIX}_out/lib/libssl.a ${CROSS_SYSROOT}/usr/lib
-    cp ${ANDROID_HOME}/openssl_${SURFIX}_out/lib/libcrypto.a ${CROSS_SYSROOT}/usr/lib
-    cp -r ${ANDROID_HOME}/openssl_${SURFIX}_out/include/openssl ${CROSS_SYSROOT}/usr/include
+    # cp ${ANDROID_HOME}/openssl_${SURFIX}_out/lib/libssl.a ${CROSS_SYSROOT}/usr/lib
+    # cp ${ANDROID_HOME}/openssl_${SURFIX}_out/lib/libcrypto.a ${CROSS_SYSROOT}/usr/lib
+    # cp -r ${ANDROID_HOME}/openssl_${SURFIX}_out/include/openssl ${CROSS_SYSROOT}/usr/include
 
 
     cp ${ANDROID_HOME}/nghttp2_${SURFIX}_out/lib/libnghttp2.a ${CROSS_SYSROOT}/usr/lib
     cp -r ${ANDROID_HOME}/nghttp2_${SURFIX}_out/include/nghttp2 ${CROSS_SYSROOT}/usr/include
 
+    cp ${ANDROID_HOME}/mbedtls_${SURFIX}_out/library/*.a ${CROSS_SYSROOT}/usr/lib
+    cp -r ${ANDROID_HOME}/mbedtls_${SURFIX}_out/include/ ${CROSS_SYSROOT}/usr/include
+
     export PKG_CONFIG_PATH=${ANDROID_HOME}/nghttp2_${SURFIX}_out/lib/pkgconfig/:$PKG_CONFIG_PATH
-    echo "pkg_config_path:"
-    echo $PKG_CONFIG_PATH
+    # echo "pkg_config_path:"
+    # echo $PKG_CONFIG_PATH
     
     cd ./build_curl/${TARGET_SOURCE}
     
@@ -66,10 +69,10 @@ _compile() {
        --disable-smb \
        --disable-telnet \
        --disable-verbose \
-       --with-ssl=$TOOLCHAIN/sysroot/usr \
+       --with-mbedtls=$TOOLCHAIN/sysroot/usr \
        --with-nghttp2=$TOOLCHAIN/sysroot/usr
+       #--with-ssl=$TOOLCHAIN/sysroot/usr \
        #--with-ca-bundle=$ANDROID_HOME/cacert.pem
-
     make clean
     make -j16
     make install
@@ -80,11 +83,11 @@ _compile() {
 # armv7
 # _compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
 # arm64v8, maybe should compile with a lower ndk
-_compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
+# _compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
 # x86
 #_compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "x86"
 # x86_64
-#_compile "x86_64" "x86_64-linux-android" "-march=x86-64 -m64 -msse4.2 -mpopcnt  -mtune=intel" "" "x86_64"
+_compile "x86_64" "x86_64-linux-android" "-march=x86-64 -m64 -msse4.2 -mpopcnt  -mtune=intel" "" "x86_64"
 # mips
 #_compile "mips" "mipsel-linux-android" "" "" "mips"
 # mips64

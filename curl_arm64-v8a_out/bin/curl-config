@@ -6,11 +6,11 @@
 #                            | (__| |_| |  _ <| |___
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 2001 - 2017, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 2001 - 2020, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # This software is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
-# are also available at https://curl.haxx.se/docs/copyright.html.
+# are also available at https://curl.se/docs/copyright.html.
 #
 # You may opt to use, copy, modify, merge, publish, distribute and/or sell
 # copies of the Software, and permit persons to whom the Software is
@@ -21,7 +21,7 @@
 #
 ###########################################################################
 
-prefix=/Users/yutianzuo/code/github/build_script/curl_arm64-v8a_out
+prefix=/Users/tianzuoyu/code/github/build_script/curl_arm64-v8a_out
 exec_prefix=${prefix}
 includedir=${prefix}/include
 cppflag_curl_staticlib=-DCURL_STATICLIB
@@ -76,7 +76,7 @@ while test $# -gt 0; do
         ;;
 
     --cc)
-        echo "/Users/yutianzuo/code/github/build_script/curl_toolchain_arm64-v8a/bin/aarch64-linux-android-gcc"
+        echo "/Users/tianzuoyu/code/github/build_script/curl_toolchain_arm64-v8a/bin/aarch64-linux-android-gcc"
         ;;
 
     --prefix)
@@ -84,19 +84,19 @@ while test $# -gt 0; do
         ;;
 
     --feature|--features)
-        for feature in SSL IPv6 UnixSockets libz AsynchDNS NTLM NTLM_WB TLS-SRP HTTP2 HTTPS-proxy ""; do
+        for feature in AsynchDNS HSTS HTTP2 IPv6 Largefile NTLM NTLM_WB SSL UnixSockets alt-svc libz ""; do
             test -n "$feature" && echo "$feature"
         done
         ;;
 
     --protocols)
-        for protocol in FILE FTP FTPS HTTP HTTPS TFTP; do
+        for protocol in FILE FTP FTPS HTTP HTTPS MQTT TFTP; do
             echo "$protocol"
         done
         ;;
 
     --version)
-        echo libcurl 7.59.0
+        echo libcurl 7.83.1
         exit 0
         ;;
 
@@ -107,21 +107,33 @@ while test $# -gt 0; do
         # when extracting the patch part we strip off everything after a
         # dash as that's used for things like version 1.2.3-CVS
         cpatch=`echo $checkfor | cut -d. -f3 | cut -d- -f1`
-        checknum=`echo "$cmajor*256*256 + $cminor*256 + ${cpatch:-0}" | bc`
-        numuppercase=`echo 073b00 | tr 'a-f' 'A-F'`
-        nownum=`echo "obase=10; ibase=16; $numuppercase" | bc`
 
-        if test "$nownum" -ge "$checknum"; then
-          # silent success
-          exit 0
-        else
-          echo "requested version $checkfor is newer than existing 7.59.0"
-          exit 1
+        vmajor=`echo 7.83.1 | cut -d. -f1`
+        vminor=`echo 7.83.1 | cut -d. -f2`
+        # when extracting the patch part we strip off everything after a
+        # dash as that's used for things like version 1.2.3-CVS
+        vpatch=`echo 7.83.1 | cut -d. -f3 | cut -d- -f1`
+
+        if test "$vmajor" -gt "$cmajor"; then
+            exit 0;
         fi
+        if test "$vmajor" -eq "$cmajor"; then
+            if test "$vminor" -gt "$cminor"; then
+                exit 0
+            fi
+            if test "$vminor" -eq "$cminor"; then
+                if test "$cpatch" -le "$vpatch"; then
+                    exit 0
+                fi
+            fi
+        fi
+
+        echo "requested version $checkfor is newer than existing 7.83.1"
+        exit 1
         ;;
 
     --vernum)
-        echo 073b00
+        echo 075301
         exit 0
         ;;
 
@@ -148,19 +160,19 @@ while test $# -gt 0; do
         else
            CURLLIBDIR=""
         fi
-        if test "Xyes" = "Xyes"; then
-          echo ${CURLLIBDIR}-lcurl -lnghttp2 -lssl -lcrypto -lz
+        if test "Xno" = "Xno"; then
+          echo ${CURLLIBDIR}-lcurl -lnghttp2 -lmbedtls -lmbedx509 -lmbedcrypto -lz
         else
           echo ${CURLLIBDIR}-lcurl
         fi
         ;;
     --ssl-backends)
-        echo "OpenSSL"
+        echo "mbedTLS"
         ;;
 
     --static-libs)
         if test "Xyes" != "Xno" ; then
-          echo ${exec_prefix}/lib/libcurl.a -L/Users/yutianzuo/code/github/build_script/curl_toolchain_arm64-v8a/sysroot/usr/lib -L/Users/yutianzuo/code/github/build_script/nghttp2_arm64-v8a_out/lib -lnghttp2 -lssl -lcrypto -lz
+          echo ${exec_prefix}/lib/libcurl.a -L/Users/tianzuoyu/code/github/build_script/curl_toolchain_arm64-v8a/sysroot/usr/lib -L/Users/yutianzuo/code/github/build_script/nghttp2_arm64-v8a_out/lib -lnghttp2 -lmbedtls -lmbedx509 -lmbedcrypto -lz
         else
           echo "curl was built with static libraries disabled" >&2
           exit 1
@@ -168,7 +180,7 @@ while test $# -gt 0; do
         ;;
 
     --configure)
-        echo " '--prefix=/Users/yutianzuo/code/github/build_script/curl_arm64-v8a_out' '--with-sysroot=/Users/yutianzuo/code/github/build_script/curl_toolchain_arm64-v8a/sysroot' '--host=aarch64-linux-android' '--enable-ipv6' '--enable-static' '--enable-threaded-resolver' '--disable-dict' '--disable-gopher' '--disable-ldap' '--disable-ldaps' '--disable-manual' '--disable-pop3' '--disable-smtp' '--disable-imap' '--disable-rtsp' '--disable-shared' '--disable-smb' '--disable-telnet' '--disable-verbose' '--with-ssl=/Users/yutianzuo/code/github/build_script/curl_toolchain_arm64-v8a/sysroot/usr' '--with-nghttp2=/Users/yutianzuo/code/github/build_script/curl_toolchain_arm64-v8a/sysroot/usr' 'host_alias=aarch64-linux-android' 'CC=/Users/yutianzuo/code/github/build_script/curl_toolchain_arm64-v8a/bin/aarch64-linux-android-gcc' 'CFLAGS= -fpic -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -finline-limit=64' 'LDFLAGS='"
+        echo " '--prefix=/Users/tianzuoyu/code/github/build_script/curl_arm64-v8a_out' '--with-sysroot=/Users/tianzuoyu/code/github/build_script/curl_toolchain_arm64-v8a/sysroot' '--host=aarch64-linux-android' '--enable-ipv6' '--enable-static' '--enable-threaded-resolver' '--disable-dict' '--disable-gopher' '--disable-ldap' '--disable-ldaps' '--disable-manual' '--disable-pop3' '--disable-smtp' '--disable-imap' '--disable-rtsp' '--disable-shared' '--disable-smb' '--disable-telnet' '--disable-verbose' '--with-mbedtls=/Users/tianzuoyu/code/github/build_script/curl_toolchain_arm64-v8a/sysroot/usr' '--with-nghttp2=/Users/tianzuoyu/code/github/build_script/curl_toolchain_arm64-v8a/sysroot/usr' 'host_alias=aarch64-linux-android' 'CC=/Users/tianzuoyu/code/github/build_script/curl_toolchain_arm64-v8a/bin/aarch64-linux-android-gcc' 'CFLAGS= -fpic -ffunction-sections -funwind-tables -fno-stack-protector -fno-strict-aliasing -finline-limit=64' 'LDFLAGS='"
         ;;
 
     *)

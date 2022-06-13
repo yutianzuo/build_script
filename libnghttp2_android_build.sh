@@ -10,7 +10,7 @@ _compile() {
 
 #custom NDK Path if needed
     #use lateset
-    export ANDROID_NDK=/Users/yutianzuo/Library/Android/sdk/ndk-bundle
+    export ANDROID_NDK=~/Library/Android/sdk/ndk-bundle
 
     echo "NDK PATH:"
     echo ${ANDROID_NDK}
@@ -35,7 +35,7 @@ _compile() {
     echo "CROSS_SYSROOT IS :"
     echo $CROSS_SYSROOT
 
-    cd ./build_libnghttp2/nghttp2-1.40.0
+    cd ./build_nghttp2/nghttp2-1.40.0
 
     PREFIX_PATH=$ANDROID_HOME/nghttp2_${SURFIX}_out/
 
@@ -57,11 +57,11 @@ _compile() {
 # armv7
 # _compile "armeabi-v7a" "arm-linux-androideabi" "-march=armv7-a -mfloat-abi=softfp -mfpu=neon" "-march=armv7-a -Wl,--fix-cortex-a8" "arm"
 # arm64v8, maybe should compile with a lower ndk
-_compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
+# _compile "arm64-v8a" "aarch64-linux-android" "" "" "arm64"
 # x86
 #_compile "x86" "i686-linux-android" "-march=i686 -m32 -msse3 -mstackrealign -mfpmath=sse -mtune=intel" "" "x86"
 # x86_64
-#_compile "x86_64" "x86_64-linux-android" "-march=x86-64 -m64 -msse4.2 -mpopcnt  -mtune=intel" "" "x86_64"
+_compile "x86_64" "x86_64-linux-android" "-march=x86-64 -m64 -msse4.2 -mpopcnt  -mtune=intel" "" "x86_64"
 # mips
 #_compile "mips" "mipsel-linux-android" "" "" "mips"
 # mips64

@@ -5,11 +5,11 @@
 #                            | (__| |_| |  _ <| |___
 #                             \___|\___/|_| \_\_____|
 #
-# Copyright (C) 1998 - 2012, Daniel Stenberg, <daniel@haxx.se>, et al.
+# Copyright (C) 1998 - 2020, Daniel Stenberg, <daniel@haxx.se>, et al.
 #
 # This software is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
-# are also available at https://curl.haxx.se/docs/copyright.html.
+# are also available at https://curl.se/docs/copyright.html.
 #
 # You may opt to use, copy, modify, merge, publish, distribute and/or sell
 # copies of the Software, and permit persons to whom the Software is
@@ -23,17 +23,17 @@
 # This should most probably benefit from getting a "Requires:" field added
 # dynamically by configure.
 #
-prefix=/Users/yutianzuo/code/github/build_script/curl_arm64-v8a_out
+prefix=/Users/tianzuoyu/code/github/build_script/curl_arm64-v8a_out
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
-supported_protocols="FILE FTP FTPS HTTP HTTPS TFTP"
-supported_features="SSL IPv6 UnixSockets libz AsynchDNS NTLM NTLM_WB TLS-SRP HTTP2 HTTPS-proxy"
+supported_protocols="FILE FTP FTPS HTTP HTTPS MQTT TFTP"
+supported_features="AsynchDNS HSTS HTTP2 IPv6 Largefile NTLM NTLM_WB SSL UnixSockets alt-svc libz"
 
 Name: libcurl
-URL: https://curl.haxx.se/
+URL: https://curl.se/
 Description: Library to transfer files with ftp, http, etc.
-Version: 7.59.0
-Libs: -L${libdir} -lcurl
-Libs.private: -lnghttp2 -lssl -lcrypto -lz
+Version: 7.83.1
+Libs: -L${libdir} -lcurl -lnghttp2 -lmbedtls -lmbedx509 -lmbedcrypto -lz 
+Libs.private: -lnghttp2 -lmbedtls -lmbedx509 -lmbedcrypto -lz
 Cflags: -I${includedir} -DCURL_STATICLIB
