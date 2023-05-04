@@ -10,11 +10,12 @@ _compile() {
     mkdir "./curl_${SURFIX}_out" 
 
     #custom NDK Path, use android studio default(latest)
-    export ANDROID_NDK=~/Library/Android/sdk/ndk-bundle
+   #  export ANDROID_NDK=~/Library/Android/sdk/ndk-bundle
     # export ANDROID_NDK=~/Downloads/android-ndk-r15c
-    TARGET_SOURCE="curl-7.83.1"
+    export ANDROID_NDK=~/Library/Android/sdk/ndk/21.1.6352462
+    TARGET_SOURCE="curl-8.0.1"
     
-    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force
+    $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force --platform=android-21
     # $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --arch=${ARCH} --install-dir=./curl_toolchain_${SURFIX} --force --platform=android-28
     
     export ANDROID_HOME=`pwd`
@@ -71,7 +72,8 @@ _compile() {
        --disable-verbose \
        --with-mbedtls=$TOOLCHAIN/sysroot/usr \
        --with-nghttp2=$TOOLCHAIN/sysroot/usr
-       #--with-ssl=$TOOLCHAIN/sysroot/usr \
+       #  --without-nghttp2
+       #  --with-ssl=$TOOLCHAIN/sysroot/usr
        #--with-ca-bundle=$ANDROID_HOME/cacert.pem
     make clean
     make -j16

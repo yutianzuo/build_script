@@ -257,6 +257,33 @@ aes.c.s:
 	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/aes.c.s
 .PHONY : aes.c.s
 
+aesce.o: aesce.c.o
+
+.PHONY : aesce.o
+
+# target to build an object file
+aesce.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/aesce.c.o
+.PHONY : aesce.c.o
+
+aesce.i: aesce.c.i
+
+.PHONY : aesce.i
+
+# target to preprocess a source file
+aesce.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/aesce.c.i
+.PHONY : aesce.c.i
+
+aesce.s: aesce.c.s
+
+.PHONY : aesce.s
+
+# target to generate assembly for a file
+aesce.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/aesce.c.s
+.PHONY : aesce.c.s
+
 aesni.o: aesni.c.o
 
 .PHONY : aesni.o
@@ -418,6 +445,87 @@ bignum.s: bignum.c.s
 bignum.c.s:
 	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum.c.s
 .PHONY : bignum.c.s
+
+bignum_core.o: bignum_core.c.o
+
+.PHONY : bignum_core.o
+
+# target to build an object file
+bignum_core.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_core.c.o
+.PHONY : bignum_core.c.o
+
+bignum_core.i: bignum_core.c.i
+
+.PHONY : bignum_core.i
+
+# target to preprocess a source file
+bignum_core.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_core.c.i
+.PHONY : bignum_core.c.i
+
+bignum_core.s: bignum_core.c.s
+
+.PHONY : bignum_core.s
+
+# target to generate assembly for a file
+bignum_core.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_core.c.s
+.PHONY : bignum_core.c.s
+
+bignum_mod.o: bignum_mod.c.o
+
+.PHONY : bignum_mod.o
+
+# target to build an object file
+bignum_mod.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_mod.c.o
+.PHONY : bignum_mod.c.o
+
+bignum_mod.i: bignum_mod.c.i
+
+.PHONY : bignum_mod.i
+
+# target to preprocess a source file
+bignum_mod.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_mod.c.i
+.PHONY : bignum_mod.c.i
+
+bignum_mod.s: bignum_mod.c.s
+
+.PHONY : bignum_mod.s
+
+# target to generate assembly for a file
+bignum_mod.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_mod.c.s
+.PHONY : bignum_mod.c.s
+
+bignum_mod_raw.o: bignum_mod_raw.c.o
+
+.PHONY : bignum_mod_raw.o
+
+# target to build an object file
+bignum_mod_raw.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_mod_raw.c.o
+.PHONY : bignum_mod_raw.c.o
+
+bignum_mod_raw.i: bignum_mod_raw.c.i
+
+.PHONY : bignum_mod_raw.i
+
+# target to preprocess a source file
+bignum_mod_raw.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_mod_raw.c.i
+.PHONY : bignum_mod_raw.c.i
+
+bignum_mod_raw.s: bignum_mod_raw.c.s
+
+.PHONY : bignum_mod_raw.s
+
+# target to generate assembly for a file
+bignum_mod_raw.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/bignum_mod_raw.c.s
+.PHONY : bignum_mod_raw.c.s
 
 camellia.o: camellia.c.o
 
@@ -986,6 +1094,33 @@ gcm.c.s:
 	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/gcm.c.s
 .PHONY : gcm.c.s
 
+hash_info.o: hash_info.c.o
+
+.PHONY : hash_info.o
+
+# target to build an object file
+hash_info.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/hash_info.c.o
+.PHONY : hash_info.c.o
+
+hash_info.i: hash_info.c.i
+
+.PHONY : hash_info.i
+
+# target to preprocess a source file
+hash_info.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/hash_info.c.i
+.PHONY : hash_info.c.i
+
+hash_info.s: hash_info.c.s
+
+.PHONY : hash_info.s
+
+# target to generate assembly for a file
+hash_info.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/hash_info.c.s
+.PHONY : hash_info.c.s
+
 hkdf.o: hkdf.c.o
 
 .PHONY : hkdf.o
@@ -1039,6 +1174,60 @@ hmac_drbg.s: hmac_drbg.c.s
 hmac_drbg.c.s:
 	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/hmac_drbg.c.s
 .PHONY : hmac_drbg.c.s
+
+lmots.o: lmots.c.o
+
+.PHONY : lmots.o
+
+# target to build an object file
+lmots.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/lmots.c.o
+.PHONY : lmots.c.o
+
+lmots.i: lmots.c.i
+
+.PHONY : lmots.i
+
+# target to preprocess a source file
+lmots.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/lmots.c.i
+.PHONY : lmots.c.i
+
+lmots.s: lmots.c.s
+
+.PHONY : lmots.s
+
+# target to generate assembly for a file
+lmots.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/lmots.c.s
+.PHONY : lmots.c.s
+
+lms.o: lms.c.o
+
+.PHONY : lms.o
+
+# target to build an object file
+lms.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/lms.c.o
+.PHONY : lms.c.o
+
+lms.i: lms.c.i
+
+.PHONY : lms.i
+
+# target to preprocess a source file
+lms.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/lms.c.i
+.PHONY : lms.c.i
+
+lms.s: lms.c.s
+
+.PHONY : lms.s
+
+# target to generate assembly for a file
+lms.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/lms.c.s
+.PHONY : lms.c.s
 
 md.o: md.c.o
 
@@ -1127,7 +1316,7 @@ mps_reader.o: mps_reader.c.o
 
 # target to build an object file
 mps_reader.c.o:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/mps_reader.c.o
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/mps_reader.c.o
 .PHONY : mps_reader.c.o
 
 mps_reader.i: mps_reader.c.i
@@ -1136,7 +1325,7 @@ mps_reader.i: mps_reader.c.i
 
 # target to preprocess a source file
 mps_reader.c.i:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/mps_reader.c.i
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/mps_reader.c.i
 .PHONY : mps_reader.c.i
 
 mps_reader.s: mps_reader.c.s
@@ -1145,7 +1334,7 @@ mps_reader.s: mps_reader.c.s
 
 # target to generate assembly for a file
 mps_reader.c.s:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/mps_reader.c.s
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/mps_reader.c.s
 .PHONY : mps_reader.c.s
 
 mps_trace.o: mps_trace.c.o
@@ -1154,7 +1343,7 @@ mps_trace.o: mps_trace.c.o
 
 # target to build an object file
 mps_trace.c.o:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/mps_trace.c.o
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/mps_trace.c.o
 .PHONY : mps_trace.c.o
 
 mps_trace.i: mps_trace.c.i
@@ -1163,7 +1352,7 @@ mps_trace.i: mps_trace.c.i
 
 # target to preprocess a source file
 mps_trace.c.i:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/mps_trace.c.i
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/mps_trace.c.i
 .PHONY : mps_trace.c.i
 
 mps_trace.s: mps_trace.c.s
@@ -1172,7 +1361,7 @@ mps_trace.s: mps_trace.c.s
 
 # target to generate assembly for a file
 mps_trace.c.s:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/mps_trace.c.s
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/mps_trace.c.s
 .PHONY : mps_trace.c.s
 
 net_sockets.o: net_sockets.c.o
@@ -1417,6 +1606,33 @@ pkcs5.s: pkcs5.c.s
 pkcs5.c.s:
 	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/pkcs5.c.s
 .PHONY : pkcs5.c.s
+
+pkcs7.o: pkcs7.c.o
+
+.PHONY : pkcs7.o
+
+# target to build an object file
+pkcs7.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedx509.dir/build.make library/CMakeFiles/mbedx509.dir/pkcs7.c.o
+.PHONY : pkcs7.c.o
+
+pkcs7.i: pkcs7.c.i
+
+.PHONY : pkcs7.i
+
+# target to preprocess a source file
+pkcs7.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedx509.dir/build.make library/CMakeFiles/mbedx509.dir/pkcs7.c.i
+.PHONY : pkcs7.c.i
+
+pkcs7.s: pkcs7.c.s
+
+.PHONY : pkcs7.s
+
+# target to generate assembly for a file
+pkcs7.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedx509.dir/build.make library/CMakeFiles/mbedx509.dir/pkcs7.c.s
+.PHONY : pkcs7.c.s
 
 pkparse.o: pkparse.c.o
 
@@ -1769,6 +1985,33 @@ psa_crypto_mac.c.s:
 	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_crypto_mac.c.s
 .PHONY : psa_crypto_mac.c.s
 
+psa_crypto_pake.o: psa_crypto_pake.c.o
+
+.PHONY : psa_crypto_pake.o
+
+# target to build an object file
+psa_crypto_pake.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_crypto_pake.c.o
+.PHONY : psa_crypto_pake.c.o
+
+psa_crypto_pake.i: psa_crypto_pake.c.i
+
+.PHONY : psa_crypto_pake.i
+
+# target to preprocess a source file
+psa_crypto_pake.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_crypto_pake.c.i
+.PHONY : psa_crypto_pake.c.i
+
+psa_crypto_pake.s: psa_crypto_pake.c.s
+
+.PHONY : psa_crypto_pake.s
+
+# target to generate assembly for a file
+psa_crypto_pake.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_crypto_pake.c.s
+.PHONY : psa_crypto_pake.c.s
+
 psa_crypto_rsa.o: psa_crypto_rsa.c.o
 
 .PHONY : psa_crypto_rsa.o
@@ -1903,6 +2146,33 @@ psa_its_file.s: psa_its_file.c.s
 psa_its_file.c.s:
 	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_its_file.c.s
 .PHONY : psa_its_file.c.s
+
+psa_util.o: psa_util.c.o
+
+.PHONY : psa_util.o
+
+# target to build an object file
+psa_util.c.o:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_util.c.o
+.PHONY : psa_util.c.o
+
+psa_util.i: psa_util.c.i
+
+.PHONY : psa_util.i
+
+# target to preprocess a source file
+psa_util.c.i:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_util.c.i
+.PHONY : psa_util.c.i
+
+psa_util.s: psa_util.c.s
+
+.PHONY : psa_util.s
+
+# target to generate assembly for a file
+psa_util.c.s:
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/psa_util.c.s
+.PHONY : psa_util.c.s
 
 ripemd160.o: ripemd160.c.o
 
@@ -2180,7 +2450,7 @@ ssl_debug_helpers_generated.o: ssl_debug_helpers_generated.c.o
 
 # target to build an object file
 ssl_debug_helpers_generated.c.o:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/ssl_debug_helpers_generated.c.o
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/ssl_debug_helpers_generated.c.o
 .PHONY : ssl_debug_helpers_generated.c.o
 
 ssl_debug_helpers_generated.i: ssl_debug_helpers_generated.c.i
@@ -2189,7 +2459,7 @@ ssl_debug_helpers_generated.i: ssl_debug_helpers_generated.c.i
 
 # target to preprocess a source file
 ssl_debug_helpers_generated.c.i:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/ssl_debug_helpers_generated.c.i
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/ssl_debug_helpers_generated.c.i
 .PHONY : ssl_debug_helpers_generated.c.i
 
 ssl_debug_helpers_generated.s: ssl_debug_helpers_generated.c.s
@@ -2198,7 +2468,7 @@ ssl_debug_helpers_generated.s: ssl_debug_helpers_generated.c.s
 
 # target to generate assembly for a file
 ssl_debug_helpers_generated.c.s:
-	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedcrypto.dir/build.make library/CMakeFiles/mbedcrypto.dir/ssl_debug_helpers_generated.c.s
+	cd /Users/tianzuoyu/code/github/mbedtls/out_x86_64 && $(MAKE) -f library/CMakeFiles/mbedtls.dir/build.make library/CMakeFiles/mbedtls.dir/ssl_debug_helpers_generated.c.s
 .PHONY : ssl_debug_helpers_generated.c.s
 
 ssl_msg.o: ssl_msg.c.o
@@ -2761,6 +3031,9 @@ help:
 	@echo "... aes.o"
 	@echo "... aes.i"
 	@echo "... aes.s"
+	@echo "... aesce.o"
+	@echo "... aesce.i"
+	@echo "... aesce.s"
 	@echo "... aesni.o"
 	@echo "... aesni.i"
 	@echo "... aesni.s"
@@ -2779,6 +3052,15 @@ help:
 	@echo "... bignum.o"
 	@echo "... bignum.i"
 	@echo "... bignum.s"
+	@echo "... bignum_core.o"
+	@echo "... bignum_core.i"
+	@echo "... bignum_core.s"
+	@echo "... bignum_mod.o"
+	@echo "... bignum_mod.i"
+	@echo "... bignum_mod.s"
+	@echo "... bignum_mod_raw.o"
+	@echo "... bignum_mod_raw.i"
+	@echo "... bignum_mod_raw.s"
 	@echo "... camellia.o"
 	@echo "... camellia.i"
 	@echo "... camellia.s"
@@ -2842,12 +3124,21 @@ help:
 	@echo "... gcm.o"
 	@echo "... gcm.i"
 	@echo "... gcm.s"
+	@echo "... hash_info.o"
+	@echo "... hash_info.i"
+	@echo "... hash_info.s"
 	@echo "... hkdf.o"
 	@echo "... hkdf.i"
 	@echo "... hkdf.s"
 	@echo "... hmac_drbg.o"
 	@echo "... hmac_drbg.i"
 	@echo "... hmac_drbg.s"
+	@echo "... lmots.o"
+	@echo "... lmots.i"
+	@echo "... lmots.s"
+	@echo "... lms.o"
+	@echo "... lms.i"
+	@echo "... lms.s"
 	@echo "... md.o"
 	@echo "... md.i"
 	@echo "... md.s"
@@ -2890,6 +3181,9 @@ help:
 	@echo "... pkcs5.o"
 	@echo "... pkcs5.i"
 	@echo "... pkcs5.s"
+	@echo "... pkcs7.o"
+	@echo "... pkcs7.i"
+	@echo "... pkcs7.s"
 	@echo "... pkparse.o"
 	@echo "... pkparse.i"
 	@echo "... pkparse.s"
@@ -2929,6 +3223,9 @@ help:
 	@echo "... psa_crypto_mac.o"
 	@echo "... psa_crypto_mac.i"
 	@echo "... psa_crypto_mac.s"
+	@echo "... psa_crypto_pake.o"
+	@echo "... psa_crypto_pake.i"
+	@echo "... psa_crypto_pake.s"
 	@echo "... psa_crypto_rsa.o"
 	@echo "... psa_crypto_rsa.i"
 	@echo "... psa_crypto_rsa.s"
@@ -2944,6 +3241,9 @@ help:
 	@echo "... psa_its_file.o"
 	@echo "... psa_its_file.i"
 	@echo "... psa_its_file.s"
+	@echo "... psa_util.o"
+	@echo "... psa_util.i"
+	@echo "... psa_util.s"
 	@echo "... ripemd160.o"
 	@echo "... ripemd160.i"
 	@echo "... ripemd160.s"

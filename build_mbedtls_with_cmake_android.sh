@@ -10,7 +10,7 @@ mkdir "out_${ARCH}"
 
 ${CMAKE_BIN} -H/Users/tianzuoyu/code/github/mbedtls \
 -DCMAKE_BUILD_TYPE=release \
--B"/Users/tianzuoyu/code/github/mbedtls/out_${ARCH}" \
+-B"/Users/tianzuoyu/code/github/mbedtls/mbedtls_${ARCH}_out" \
 -DANDROID_ABI="${ARCH}" \
 -DANDROID_PLATFORM=android-21 \
 -DANDROID_NDK="${NDK_PATH}" \
