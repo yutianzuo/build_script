@@ -13,7 +13,7 @@ if [[ -z "$1" ]]; then
 fi
 
 mkdir "$(pwd)/${NAME}_${ARCH}_out"
-
+#通过cmake编译curl，无法strip，库会比较大，不影响使用，在最终的android编译动态库时，会统一被strip掉
 ${CMAKE_BIN} -B "$(pwd)/${NAME}_${ARCH}_out" \
 -DENABLE_MANUAL=OFF \
 -DCURL_DISABLE_VERBOSE_STRINGS=ON \
