@@ -12,7 +12,9 @@ if [[ -z "$1" ]]; then
 fi
 
 mkdir "$(pwd)/${NAME}_${ARCH}_out"
-${CMAKE_BIN} -B "$(pwd)/${NAME}_${ARCH}_out" \
+
+${CMAKE_BIN} -B"$(pwd)/${NAME}_${ARCH}_out" \
+-DCMAKE_INSTALL_PREFIX="$(pwd)/${NAME}_${ARCH}_out" \
 -DCMAKE_BUILD_TYPE=Release \
 -DANDROID_ABI="${ARCH}" \
 -DANDROID_PLATFORM=android-21 \

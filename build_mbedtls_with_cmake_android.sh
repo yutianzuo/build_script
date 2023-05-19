@@ -4,10 +4,17 @@ CMAKE_BIN="${HOME}/Library/Android/sdk/cmake/3.22.1/bin/cmake"
 #NDK_PATH="/Users/tianzuoyu/Downloads/android-ndk-r15c"
 NDK_PATH="${HOME}/Library/Android/sdk/ndk/21.1.6352462"
 ARCH="$1"
+NAME=mbedtls-340
 
-mkdir "$(pwd)/mbedtls_${ARCH}_out"
+if [[ -z "$1" ]]; then
+    echo "input arch please"
+    exit 1
+fi
 
-${CMAKE_BIN} -B "$(pwd)/mbedtls_${ARCH}_out" \
+mkdir "$(pwd)/${NAME}_${ARCH}_out"
+
+${CMAKE_BIN} -B "$(pwd)/${NAME}_${ARCH}_out" \
+-DCMAKE_INSTALL_PREFIX="$(pwd)/${NAME}_${ARCH}_out" \
 -DCMAKE_BUILD_TYPE=Release \
 -DANDROID_ABI="${ARCH}" \
 -DANDROID_PLATFORM=android-21 \
