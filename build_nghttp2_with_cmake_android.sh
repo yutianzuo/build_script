@@ -23,4 +23,4 @@ ${CMAKE_BIN} -B"$(pwd)/${NAME}_${ARCH}_out" \
 -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
 -DENABLE_STATIC_LIB=ON \
 -DENABLE_SHARED_LIB=OFF \
-./build_nghttp2/nghttp2-1.40.0
+./build_nghttp2/nghttp2-1.40.0 && ${CMAKE_BIN} --build "$(pwd)/${NAME}_${ARCH}_out" --target install

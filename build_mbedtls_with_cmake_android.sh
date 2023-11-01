@@ -21,4 +21,4 @@ ${CMAKE_BIN} -B "$(pwd)/${NAME}_${ARCH}_out" \
 -DANDROID_NDK="${NDK_PATH}" \
 -DCMAKE_TOOLCHAIN_FILE="${NDK_PATH}/build/cmake/android.toolchain.cmake" \
 -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
-../mbedtls
+../mbedtls && ${CMAKE_BIN} --build "$(pwd)/${NAME}_${ARCH}_out" --target install
